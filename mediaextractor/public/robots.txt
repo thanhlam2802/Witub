@@ -1,0 +1,35 @@
+# ===============================================================
+# Block specific AI data scrapers
+# ===============================================================
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+# ===============================================================
+# Rules for all other crawlers, including Google and Bing
+# ===============================================================
+User-agent: *
+
+# Disallow URLs that are not useful for SEO
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Disallow: /cart
+Disallow: /checkout
+Disallow: /account/
+Disallow: /search
+Disallow: /tim-kiem
+Disallow: /filter
+Disallow: /loc
+
+# Disallow all URLs containing query parameters to avoid duplicate content
+# and wasted crawl budget. This one rule covers all cases like
+# ?orderby=, &sort=, ?page=, etc.
+Disallow: /*?*
+
+# ===============================================================
+# Sitemap location (replace with your actual domain)
+# ===============================================================
+Sitemap:http://127.0.0.1:8000/sitemap.xml
