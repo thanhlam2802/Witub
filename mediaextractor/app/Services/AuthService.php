@@ -36,7 +36,8 @@ class AuthService extends BaseService
 
         $user = $this->userRepository->create($data);
         $token = $user->createToken('auth_token')->plainTextToken;
-        $this->mailService->send($user->email, new WelcomeEmail($user));
+        $user->sendEmailVerificationNotification();
+
 
 
         return ['user' => $user, 'token' => $token];

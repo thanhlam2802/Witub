@@ -130,8 +130,10 @@
                                     </td>
                                     <td class="flex items-center p-4 mr-12 space-x-6 whitespace-nowrap">
                                         <img class="w-10 h-10 rounded-full"
-                                            src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                                            alt="Neil Sims avatar">
+                                            src="{{ $user->avatar ? $user->avatar : asset('images/default-avatar.png') }}"
+                                            alt="{{ $user->name }} avatar">
+
+
                                         <div class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                             <div class="text-base font-semibold text-gray-900 dark:text-white">
                                                 {{ $user->full_name }}
@@ -185,9 +187,9 @@
                                             Edit
                                         </button>
 
-                                        {{-- Form Delete không đổi --}}
                                         <form action="{{ route('users.destroy', $user) }}" method="POST"
-                                            class="inline-block" onsubmit="...">
+                                            class="inline-block"
+                                            onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"
@@ -201,6 +203,7 @@
                                                 Delete
                                             </button>
                                         </form>
+
                                     </td>
                                 </tr>
 

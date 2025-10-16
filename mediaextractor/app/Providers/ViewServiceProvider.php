@@ -59,7 +59,7 @@ class ViewServiceProvider extends ServiceProvider
             } elseif (str_starts_with($routeName, 'admin.seo_tools.')) {
                 $group = 'page';
                 $page_slug = 'seo-tools';
-            } elseif (str_starts_with($routeName, 'admin.settings.')) {
+            } elseif (str_starts_with($routeName, 'settings.')) {
                 $group = 'page';
                 $page_slug = 'settings';
             }

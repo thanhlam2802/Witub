@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
             'email' => [
                 'required',
                 'string',
-                'email:rfc',
+                'email:rfc,dns',
                 'max:255',
                 'unique:users,email'
             ],
@@ -36,8 +36,9 @@ class RegisterRequest extends FormRequest
                 Password::min(8)
             ],
 
+
             'terms_accepted' => [
-                'nullable',
+                'required',
                 'accepted'
             ]
         ];
@@ -51,6 +52,8 @@ class RegisterRequest extends FormRequest
             'email.unique' => 'Email này đã được sử dụng.',
             'password.required' => 'Mật khẩu là bắt buộc.',
             'password.confirmed' => 'Xác nhận mật khẩu không khớp.',
+            'terms_accepted.required' => 'Bạn phải đồng ý với Điều khoản và Chính sách của chúng tôi.',
+            'terms_accepted.accepted' => 'Bạn phải đồng ý với Điều khoản và Chính sách của chúng tôi.',
         ];
     }
 }

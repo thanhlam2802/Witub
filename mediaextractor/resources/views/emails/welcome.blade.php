@@ -68,7 +68,8 @@
         <p>Tài khoản của bạn (<span class="strong">{{ $user->email }}</span>) đã được kích hoạt hoàn toàn. Bạn có thể
             bắt đầu sử dụng ngay bằng cách truy cập vào trang quản lý của mình.</p>
 
-        <p><a href="{{ route('home') }}"><strong>Đi tới Bảng điều khiển của bạn &rarr;</strong></a></p>
+        <p><a href="{{ route('home', ['locale' => $user->preferred_locale ?? 'vi']) }}"><strong>Đi tới Bảng điều khiển
+                    của bạn &rarr;</strong></a></p>
 
         <p>Tôi luôn sẵn sàng giải đáp nếu bạn có bất kỳ câu hỏi nào, vì vậy đừng ngần ngại liên hệ với tôi qua <a
                 href="mailto:[Email hỗ trợ của bạn]">[Email hỗ trợ của bạn]</a> (hoặc bằng cách trả lời email này).</p>

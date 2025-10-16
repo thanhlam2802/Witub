@@ -15,38 +15,35 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class ImageService
 {
-    /**
-     * Lưu một file ảnh được tải lên, tùy chọn chuyển đổi sang WebP.
-     *
-     * @param UploadedFile $file Đối tượng file được tải lên từ request.
-     * @param string $folder Thư mục con để lưu ảnh.
-     * @param string $baseName Tên gốc để tạo slug cho file (VD: tên sản phẩm, tên danh mục).
-     * @param bool $convertToWebp True nếu muốn chuyển đổi ảnh sang định dạng WebP.
-     * @param int $quality Chất lượng ảnh WebP (từ 0 đến 100).
-     * @return string Đường dẫn tương đối của file đã lưu.
-     */
-    // THÊM THAM SỐ $baseName VÀO ĐÂY
     public function store(UploadedFile $file, string $folder, string $baseName, bool $convertToWebp = false, int $quality = 90): string
     {
-
-        $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $fileName = Str::slug($baseName) . '-' . time();
-
-
-        $filePath = "{$folder}/{$fileName}";
+        $disk = Storage::disk('public');
 
         if ($convertToWebp) {
-            $filePath .= '.webp';
+            $filePath = "{$folder}/{$fileName}.webp";
 
+            // 1. Đọc và chuyển đổi ảnh
+            $image = Image::read($file);
 
-            $image = Image::read($file)->toWebp($quality);
+            // 2. Sử dụng stream để lưu đối tượng Intervention Image đã được encode
+            $disk->put($filePath, $image->toWebp($quality));
 
-            Storage::disk('public')->put($filePath, (string) $image);
+            // QUAN TRỌNG: $disk->put() với chuỗi nội dung (như toWebp() trả về) là phương pháp tốt nhất.
+            // Phương pháp này đã được bạn áp dụng và nên hoạt động.
+            // Nếu vẫn thấy file gốc, file gốc có thể đang được lưu bởi một tiến trình khác.
+
         } else {
+            // Trường hợp 2: Giữ nguyên định dạng
+            $extension = $file->getClientOriginalExtension();
+            $filePath = "{$folder}/{$fileName}.{$extension}";
 
-            $filePath .= '.' . $file->getClientOriginalExtension();
+            // LƯU CÁCH CHUẨN CỦA LARAVEL: Sử dụng hàm storeAs()
+            // Hàm này tự động dọn dẹp file tạm PHP sau khi lưu thành công.
+            $file->storeAs($folder, "{$fileName}.{$extension}", 'public');
 
-            $file->storeAs($folder, $fileName . '.' . $file->getClientOriginalExtension(), 'public');
+            // Bạn có thể bỏ qua dòng $disk->put(...) và quay lại dùng storeAs cho trường hợp này:
+            // return $file->storeAs($folder, "{$fileName}.{$extension}", 'public');
         }
 
         return $filePath;

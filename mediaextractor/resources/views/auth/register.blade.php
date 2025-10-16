@@ -34,6 +34,16 @@
                 <input id="password_confirmation" type="password" name="password_confirmation" required
                     class="w-full mt-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-blue-200">
             </div>
+            <div class="flex items-center mb-6">
+                <input id="terms_accepted" type="checkbox" name="terms_accepted" value="1"
+                    class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                <label for="terms_accepted" class="ml-2 text-sm text-gray-700">
+                    Tôi đã đọc và đồng ý với
+                    <a href="/terms-of-service" class="text-blue-600 hover:underline">Điều khoản dịch vụ</a>
+                    và
+                    <a href="/privacy-policy" class="text-blue-600 hover:underline">Chính sách bảo mật</a>.
+                </label>
+            </div>
             <button type="submit"
                 class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition">
                 Đăng ký

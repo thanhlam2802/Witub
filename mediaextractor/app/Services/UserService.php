@@ -82,11 +82,16 @@ class UserService extends BaseService
         ]);
 
         if ($validator->fails()) {
-            // Lỗi validation: Dữ liệu không hợp lệ.
+
             throw new ValidationException("Dữ liệu cung cấp không hợp lệ.", $validator->errors());
         }
 
-        // 2. Bắt đầu transaction để đảm bảo toàn vẹn dữ liệu
+        $validatedData = $validator->validated();
+
+
+        $validatedData['full_name'] = $validatedData['full_name'] ?? explode('@', $validatedData['email'])[0];
+        $validatedData['role'] = $validatedData['role'] ?? User::ROLE_USER;
+
         DB::beginTransaction();
         try {
             $user = $this->userRepository->create($validator->validated());
@@ -95,7 +100,6 @@ class UserService extends BaseService
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error("Lỗi khi tạo người dùng mới: " . $e->getMessage());
-            // Lỗi hệ thống: Không thể ghi vào DB.
             throw new ApiException("Đã có lỗi xảy ra trong quá trình tạo người dùng.");
         }
     }

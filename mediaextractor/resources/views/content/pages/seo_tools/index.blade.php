@@ -7,6 +7,7 @@
         class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="w-full mb-1">
             <div class="mb-4">
+                <x-breadcrumb />
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">@yield('title')</h1>
                 <p class="text-gray-500 dark:text-gray-400 mt-1">Thiết lập các file SEO tĩnh để giúp các công cụ tìm kiếm
                     nhận dạng website nhanh chóng.</p>
@@ -17,12 +18,12 @@
     <div class="flex flex-col">
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full align-middle">
-                <div class="p-4">
+                <div class="">
 
 
                     <form action="{{ route('admin.seo_tools.save') }}" method="POST">
                         @csrf
-                        <div class="space-y-6 bg-white p-6 rounded-lg border dark:bg-gray-800 dark:border-gray-700">
+                        <div class="space-y-6 bg-white p-6  dark:bg-gray-800 dark:border-gray-700">
 
                             {{-- Robots.txt Editor --}}
                             <div>
