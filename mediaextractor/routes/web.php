@@ -3,7 +3,7 @@
 use App\Http\Controllers\User\StudioController;
 use App\Http\Controllers\Admin\SeoToolsController;
 use App\Http\Controllers\Admin\CategoryTypeController;
-
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
@@ -18,6 +18,7 @@ use App\Http\Controllers\LanguageController;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Locale;
 use App\Http\Middleware\SetAppLocale;
+use App\http\Middleware\CheckMaintenanceMode;
 /*
 |--------------------------------------------------------------------------
 | 🌐 FRONTEND ROUTES
@@ -39,7 +40,7 @@ Route::get('/switch-language/{locale}', [LanguageController::class, 'switch'])
 Route::group([
     'prefix' => '{locale}',
     'where' => ['locale' => 'vi|en'],
-    'middleware' => [SetAppLocale::class]
+    'middleware' => [CheckMaintenanceMode::class, SetAppLocale::class]
 ], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::view('/privacy-policy', 'privacy-policy')->name('privacy');
@@ -101,7 +102,10 @@ Route::prefix('admin')
         Route::post('/posts/preview', [PostController::class, 'preview'])->name('admin.posts.preview');
         Route::resource('posts', PostController::class);
         Route::resource('category-types', CategoryTypeController::class);
-
+        Route::group(['prefix' => 'settings', 'as' => 'settings.'], function () {
+            Route::get('/', [SettingController::class, 'index'])->name('index');
+            Route::put('/', [SettingController::class, 'update'])->name('update');
+        });
         Route::get('posts/{post}/toggle/{attribute}', [\App\Http\Controllers\Admin\PostController::class, 'toggleStatus'])
             ->name('posts.toggleStatus')
             ->whereIn('attribute', ['status', 'is_featured']);

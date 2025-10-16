@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Services\SettingService;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\StoreSettingRequest;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -18,23 +18,31 @@ class SettingController extends Controller
     }
 
     /**
-     * Hiển thị form quản lý cài đặt.
+     * Hiển thị form quản lý cài đặt chung (footer + bảo trì)
      */
     public function index(): View
     {
-        $settings = $this->settingService->getAllSettings();
-        return view('admin.settings.index', compact('settings'));
+        $footer = $this->settingService->getFooter();
+        $maintenance = $this->settingService->isMaintenance();
+
+        return view('content.settings.index', compact('footer', 'maintenance'));
     }
 
     /**
-     * Xử lý việc lưu cài đặt.
+     * Lưu cài đặt footer và trạng thái bảo trì
      */
-    public function update(Request $request): RedirectResponse
+    public function update(StoreSettingRequest $request): RedirectResponse
     {
-        $validatedData = $request->validate([]);
+        $validatedData = $request->validated();
 
-        $this->settingService->updateSettings($validatedData);
+        // Cập nhật footer
+        $footerData = $validatedData['footer'] ?? [];
+        $this->settingService->updateFooter($footerData);
 
-        return back()->with('success', 'Cài đặt đã được cập nhật thành công.');
+        // Cập nhật trạng thái bảo trì
+        $maintenanceStatus = $validatedData['maintenance'] ?? false;
+        $this->settingService->setMaintenance($maintenanceStatus);
+
+        return redirect()->back()->with('success', 'Cài đặt đã được cập nhật thành công.');
     }
 }

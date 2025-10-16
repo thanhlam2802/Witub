@@ -92,7 +92,7 @@
     <main class="mx-auto p-4 sm:p-6 lg:p-8">
         @yield('content')
     </main>
-
+    @include('partials.footer-main')
     @stack('scripts')
 </body>
 

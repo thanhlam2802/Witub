@@ -4,20 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Services\SettingService; // <-- IMPORT SERVICE
 
 class HomeController extends Controller
 {
-    /**
-     * Middleware yêu cầu người dùng phải đăng nhập để truy cập.
-     */
-    public function __construct() {}
+    protected SettingService $settingService;
 
-    /**
-     * Hiển thị trang chủ cho người dùng đã đăng nhập.
-     */
+
+    public function __construct(SettingService $settingService)
+    {
+
+        $this->settingService = $settingService;
+    }
+
+
     public function index(): View
     {
 
-        return view('layouts.app');
+        $footer = $this->settingService->getFooter();
+
+
+        return view('layouts.app', compact('footer'));
     }
 }

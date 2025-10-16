@@ -59,6 +59,9 @@ class ViewServiceProvider extends ServiceProvider
             } elseif (str_starts_with($routeName, 'admin.seo_tools.')) {
                 $group = 'page';
                 $page_slug = 'seo-tools';
+            } elseif (str_starts_with($routeName, 'admin.settings.')) {
+                $group = 'page';
+                $page_slug = 'settings';
             }
 
             $view->with(compact('group', 'page_slug'));
