@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http; // <-- 1. Thêm Http facade
+use Illuminate\Support\Facades\Http;
 use App\Models\User;
 use Tests\TestCase;
 use PHPUnit\Framework\Attributes\Test;

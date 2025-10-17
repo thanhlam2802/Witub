@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
     <url>
     <loc>http://localhost:8000/vi/blog/co-gi-moi-trong-laravel-11</loc>
-    <lastmod>2025-10-15T03:49:01+00:00</lastmod>
+    <lastmod>2025-10-15T09:57:30+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
     <loc>http://localhost:8000/en/blog/whats-new-in-laravel-11</loc>
-    <lastmod>2025-10-15T03:49:01+00:00</lastmod>
+    <lastmod>2025-10-15T09:57:30+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
@@ -26,13 +26,13 @@
             </url>
     <url>
     <loc>http://localhost:8000/vi/blog/huong-dan-tai-video-tu-a-den-z-phan-1</loc>
-    <lastmod>2025-10-15T03:44:52+00:00</lastmod>
+    <lastmod>2025-10-16T02:46:47+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
     <url>
     <loc>http://localhost:8000/en/blog/video-download-guide-a-z-part-1</loc>
-    <lastmod>2025-10-15T03:44:52+00:00</lastmod>
+    <lastmod>2025-10-16T02:46:47+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
             </url>
@@ -506,13 +506,13 @@
             </url>
     <url>
     <loc>http://localhost:8000/vi/blog/cau-hoi-thuong-gap</loc>
-    <lastmod>2025-10-09T15:08:28+00:00</lastmod>
+    <lastmod>2025-10-15T09:40:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
     <loc>http://localhost:8000/en/blog/faq</loc>
-    <lastmod>2025-10-09T15:08:28+00:00</lastmod>
+    <lastmod>2025-10-15T09:40:14+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
             </url>
@@ -602,13 +602,13 @@
             </url>
     <url>
     <loc>http://localhost:8000/en/blog/video-download-guides</loc>
-    <lastmod>2025-10-11T08:37:57+00:00</lastmod>
+    <lastmod>2025-10-15T07:50:49+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
             </url>
     <url>
     <loc>http://localhost:8000/vi/blog/huong-dan-tai-video</loc>
-    <lastmod>2025-10-11T08:37:57+00:00</lastmod>
+    <lastmod>2025-10-15T07:50:49+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
             </url>
@@ -693,6 +693,30 @@
     <url>
     <loc>http://localhost:8000/en/blog/video-streaming-trends</loc>
     <lastmod>2025-10-11T15:42:21+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+            </url>
+    <url>
+    <loc>http://localhost:8000/en/blog/free-video-downloader-online</loc>
+    <lastmod>2025-10-15T07:42:11+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+            </url>
+    <url>
+    <loc>http://localhost:8000/vi/blog/tai-video-truc-tuyen</loc>
+    <lastmod>2025-10-15T07:42:11+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+            </url>
+    <url>
+    <loc>http://localhost:8000/en/blog/subtitle-extractor</loc>
+    <lastmod>2025-10-15T07:45:31+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+            </url>
+    <url>
+    <loc>http://localhost:8000/vi/blog/trich-luc-phu-de</loc>
+    <lastmod>2025-10-15T07:45:31+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
             </url>

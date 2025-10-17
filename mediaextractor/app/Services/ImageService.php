@@ -22,28 +22,15 @@ class ImageService
 
         if ($convertToWebp) {
             $filePath = "{$folder}/{$fileName}.webp";
-
-            // 1. Đọc và chuyển đổi ảnh
             $image = Image::read($file);
-
-            // 2. Sử dụng stream để lưu đối tượng Intervention Image đã được encode
             $disk->put($filePath, $image->toWebp($quality));
 
-            // QUAN TRỌNG: $disk->put() với chuỗi nội dung (như toWebp() trả về) là phương pháp tốt nhất.
-            // Phương pháp này đã được bạn áp dụng và nên hoạt động.
-            // Nếu vẫn thấy file gốc, file gốc có thể đang được lưu bởi một tiến trình khác.
-
         } else {
-            // Trường hợp 2: Giữ nguyên định dạng
             $extension = $file->getClientOriginalExtension();
             $filePath = "{$folder}/{$fileName}.{$extension}";
-
-            // LƯU CÁCH CHUẨN CỦA LARAVEL: Sử dụng hàm storeAs()
-            // Hàm này tự động dọn dẹp file tạm PHP sau khi lưu thành công.
             $file->storeAs($folder, "{$fileName}.{$extension}", 'public');
 
-            // Bạn có thể bỏ qua dòng $disk->put(...) và quay lại dùng storeAs cho trường hợp này:
-            // return $file->storeAs($folder, "{$fileName}.{$extension}", 'public');
+
         }
 
         return $filePath;

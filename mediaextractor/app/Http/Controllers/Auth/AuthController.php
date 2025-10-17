@@ -79,7 +79,8 @@ class AuthController extends Controller
 
     public function redirectToGoogle(): RedirectResponse
     {
-        return Socialite::driver('google')->redirect();
+
+        return Socialite::driver('google')->with(['prompt' => 'select_account'])->redirect();
     }
 
 
@@ -89,7 +90,7 @@ class AuthController extends Controller
         try {
             $user = $this->authService->handleGoogleCallback();
 
-            // Kiểm tra vai trò và chuyển hướng đến trang quản lý
+
             if (in_array($user->role, ['admin', 'poster'])) {
                 return redirect()->route('admin.dashboard')
                     ->with('success', 'Đăng nhập bằng Google thành công! Chào mừng ' . $user->full_name);

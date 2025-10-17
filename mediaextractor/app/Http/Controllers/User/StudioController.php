@@ -8,9 +8,7 @@ use Illuminate\View\View;
 
 class StudioController extends Controller
 {
-    /**
-     * Hiển thị trang studio chính (trang chuyển văn bản).
-     */
+
     public function index(): View
     {
 
