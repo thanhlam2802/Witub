@@ -4,64 +4,32 @@
         <h1 class="text-2xl font-bold text-blue-600">Witub</h1>
     </div>
 
-    {{-- Menu điều hướng --}}
-    <nav class="flex-1 px-4 py-6 space-y-2">
+    <nav class="flex-1 px-3 py-4 overflow-y-auto">
+        <ul class="space-y-4">
+            <!-- NHÓM: Công cụ Video -->
+            <li>
+                <h5 class="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    Công cụ Video
+                </h5>
+                <ul class="mt-1 space-y-1">
+                    <li>
+                        <a href="{{ route('studio.index') }}"
+                            class="flex items-center px-3 py-2 text-base font-medium rounded-lg
 
-        <!-- Tải video trực tuyến -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+                                {{ Request::is('studio') ? 'bg-blue-50 text-blue-600' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                            <i class="fa-solid fa-download w-5 text-center"></i>
+                            <span class="ml-3">Tải Video</span>
+                        </a>
+                    </li>
 
-            <span>Tải video trực tuyến</span>
-        </a>
+                </ul>
+            </li>
 
-        <!-- Trích lục phụ đề -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm  text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
+            <li>
+                <h5 class="px-3 pt-2 pb-1 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                    Công cụ Phụ đề
+                </h5>
 
-            <span>Trích lục phụ đề</span>
-        </a>
-
-        <!-- Dịch phụ đề -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>Dịch phụ đề</span>
-        </a>
-
-        <!-- Chuyển phụ đề sang giọng nói -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>Chuyển phụ đề sang giọng nói</span>
-        </a>
-
-        <!-- Tách âm thanh / giọng nói -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm  text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>Tách âm thanh / giọng nói</span>
-        </a>
-
-        <!-- Mua gói dịch vụ -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm  text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>Mua gói dịch vụ</span>
-        </a>
-
-        <!-- Giới thiệu bạn bè -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm  text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>Giới thiệu bạn bè</span>
-        </a>
-
-        <!-- AI DEV -->
-        <a href="#"
-            class="flex items-center px-4 py-2 text-sm text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg">
-
-            <span>AI Dev</span>
-        </a>
     </nav>
 
     {{-- Bọc trong @auth để đảm bảo chỉ người dùng đã đăng nhập mới thấy --}}

@@ -87,6 +87,7 @@ Route::prefix('studio')
         Route::get('/', [StudioController::class, 'index'])->name('index');
     });
 
+
 /*
 |--------------------------------------------------------------------------
 | 🧭 ADMIN ROUTES

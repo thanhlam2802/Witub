@@ -12,6 +12,6 @@ class StudioController extends Controller
     public function index(): View
     {
 
-        return view('layouts.service_layout');
+        return view('tools.video_downloader.index');
     }
 }
