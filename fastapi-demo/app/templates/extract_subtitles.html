@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Trích xuất Phụ đề từ Video{% endblock %}
+
+{% block content %}
+<div class="text-center max-w-3xl mx-auto">
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+        Trích xuất Phụ đề Tự động
+    </h1>
+    <p class="mt-4 text-lg text-gray-600">
+        Tải video của bạn lên để tự động tạo phụ đề ở định dạng SRT và TXT.
+    </p>
+
+    <form id="subtitleForm" class="mt-8 max-w-xl mx-auto">
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900" for="video_file">Tải video lên</label>
+            <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none" aria-describedby="video_file_help" id="video_file" type="file" accept="video/*">
+            <p class="mt-1 text-sm text-gray-500" id="video_file_help">Hỗ trợ MP4, MOV, AVI, MKV...</p>
+        </div>
+        
+        <div id="progressBar" class="w-full bg-gray-200 rounded-full h-2.5 mt-4 hidden">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: 0%"></div>
+        </div>
+
+        <button type="submit" class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+            <i class="fa-solid fa-closed-captioning mr-2"></i> Bắt đầu trích xuất
+        </button>
+    </form>
+</div>
+
+<div id="subtitleResult" class="hidden max-w-xl mx-auto bg-white p-6 mt-8 rounded-2xl shadow-lg border border-gray-200">
+    <h3 class="text-lg font-semibold text-gray-900 text-center">Trích xuất thành công!</h3>
+    <div class="mt-4 flex justify-center gap-4">
+        <a id="downloadSrtBtn" href="#" download class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800">
+            <i class="fa-solid fa-download"></i> Tải về (.SRT)
+        </a>
+        <a id="downloadTxtBtn" href="#" download class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-800">
+            <i class="fa-solid fa-download"></i> Tải về (.TXT)
+        </a>
+    </div>
+</div>
+
+<div id="status" class="text-center text-gray-600 font-medium mt-6"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/extract-subtitles.js" defer></script>
+{% endblock %}

@@ -1,0 +1,20 @@
+fastapi
+uvicorn[standard]
+redis
+rq
+yt-dlp
+jinja2
+itsdangerous
+unidecode
+instaloader
+httpx
+playwright
+webvtt-py
+translators
+python-multipart
+langdetect
+google-generativeai
+openai
+pip freeze > requirements.txt
+git add requirements.txt .gitignore
+git commit -m "Add requirements and ignore venv"
