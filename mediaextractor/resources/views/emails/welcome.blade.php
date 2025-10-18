@@ -58,7 +58,7 @@
 
 <body>
     <div class="container">
-        <h1>Chào mừng bạn đến với [Tên Ứng Dụng Của Bạn]! 🎉</h1>
+        <h1>Chào mừng bạn đến với Witub!</h1>
 
         <p>Xin chào, <span class="strong">{{ $user->full_name }}</span>!</p>
 
@@ -74,7 +74,7 @@
         <p>Tôi luôn sẵn sàng giải đáp nếu bạn có bất kỳ câu hỏi nào, vì vậy đừng ngần ngại liên hệ với tôi qua <a
                 href="mailto:[Email hỗ trợ của bạn]">[Email hỗ trợ của bạn]</a> (hoặc bằng cách trả lời email này).</p>
 
-        <p>Tôi hy vọng bạn thích sử dụng dịch vụ của chúng tôi! 😊</p>
+        <p>Tôi hy vọng bạn thích sử dụng dịch vụ của chúng tôi! </p>
 
         <p>
             Trân trọng,<br>
@@ -82,7 +82,7 @@
         </p>
     </div>
     <div class="footer">
-        <p>&copy; {{ date('Y') }} [Tên Công Ty Của Bạn]. All rights reserved.</p>
+        <p>&copy; {{ date('Y') }} Witub. All rights reserved.</p>
     </div>
 </body>
 

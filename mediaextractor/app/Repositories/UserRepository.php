@@ -52,10 +52,7 @@ class UserRepository extends BaseRepository
      */
     public function create(array $data): Model
     {
-        // Tự động hash mật khẩu nếu nó tồn tại trong dữ liệu đầu vào
-        if (isset($data['password_hash'])) {
-            $data['password_hash'] = Hash::make($data['password_hash']);
-        }
+      
 
         return parent::create($data);
     }

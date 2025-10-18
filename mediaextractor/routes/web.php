@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Cache;
 use App\Models\Locale;
 use App\Http\Middleware\SetAppLocale;
 use App\http\Middleware\CheckMaintenanceMode;
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | 🌐 FRONTEND ROUTES
@@ -72,6 +75,23 @@ Route::prefix('auth')->group(function () {
     // --- Các Route cho Google (giữ nguyên) ---
     Route::get('/google/redirect', [AuthController::class, 'redirectToGoogle'])->name('auth.google.redirect');
     Route::get('/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
+    Route::get('/email/verify', function () {
+
+        return view('auth.verify-email');
+    })->middleware('auth')->name('verification.notice');
+
+
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('/studio');
+    })->middleware(['auth', 'signed'])->name('verification.verify');
+
+    // 3. Route để user bấm nút "Gửi lại email xác thực"
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Đã gửi lại link xác thực!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 });
 /*
 |--------------------------------------------------------------------------
@@ -79,7 +99,7 @@ Route::prefix('auth')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::prefix('studio')
-    ->middleware('auth')
+->middleware(['auth', 'verified'])
     ->name('studio.')
     ->group(function () {
 

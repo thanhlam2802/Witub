@@ -53,7 +53,7 @@ class PostRepository extends BaseRepository
 
     public function searchAndPaginate(?string $search, ?array $categoryIds, int $perPage = 15, array $excludeIds = [])
     {
-        $query = $this->model->query()->with(['categories.translations', 'author', 'translations']);
+        $query = $this->model->query()->with(['categories.translations', 'author', 'translations',]);
 
         if ($search) {
             $query->whereHas('translations', function ($q) use ($search) {

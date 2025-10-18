@@ -85,7 +85,7 @@ class AuthController extends Controller
 
 
 
-    public function handleGoogleCallback()
+    public function handleGoogleCallback(): RedirectResponse
     {
         try {
             $user = $this->authService->handleGoogleCallback();

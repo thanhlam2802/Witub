@@ -17,6 +17,7 @@ class ImageService
 {
     public function store(UploadedFile $file, string $folder, string $baseName, bool $convertToWebp = false, int $quality = 90): string
     {
+        
         $fileName = Str::slug($baseName) . '-' . time();
         $disk = Storage::disk('public');
 

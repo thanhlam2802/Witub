@@ -56,7 +56,8 @@ class PostController extends Controller
     public function create()
     {
 
-        $locales = \App\Models\Locale::where('locale_code', 'vi')->get();
+        // $locales = \App\Models\Locale::where('locale_code', 'vi')->get();
+        $locales = \App\Models\Locale::where('is_active', true)->get();
         $categories = $this->categoryService->getCategoriesByType('blog');
         $tags = Tag::with('translations')->get();
         $authors = User::all();
@@ -93,7 +94,8 @@ class PostController extends Controller
 
             return redirect()->route('posts.index')->with('success', 'Tạo bài viết thành công.');
         } catch (\Exception $e) {
-            dd($e);
+
+             return back()->with('error', 'Có lỗi xảy ra khi tạo bài viết.')->withInput();
         }
     }
 

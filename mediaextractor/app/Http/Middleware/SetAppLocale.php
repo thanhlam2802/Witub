@@ -16,8 +16,7 @@ class SetAppLocale
         // Lấy locale từ URL
         $locale = $request->segment(1);
 
-        // Lấy danh sách locale hợp lệ từ DB
-        $availableLocales = Cache::rememberForever('available_locales', function () {
+        $availableLocales = Cache::remember('available_locales', 3600, function () {
             return Locale::where('is_active', true)->pluck('locale_code')->toArray();
         });
 
