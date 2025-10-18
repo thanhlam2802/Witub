@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Tách Âm Thanh từ Video{% endblock %}
+
+{% block main_content %}
+    <header class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+            Tách Âm Thanh / Giọng Nói từ Video
+        </h1>
+        <p class="mt-4 text-lg text-gray-600">
+            Dán link video (YouTube, TikTok, Facebook...) để trích xuất file âm thanh (MP3) chất lượng cao.
+        </p>
+
+        <form id="extractAudioForm" class="mt-8 flex flex-col sm:flex-row gap-2 max-w-xl mx-auto" method="post" action="/audio/extract">
+            <input name="url" type="text" placeholder="Dán link video..." class="flex-1 px-4 py-3 rounded-md border" />
+            <button type="submit" class="px-4 py-3 bg-blue-600 text-white rounded-md">Tách âm thanh</button>
+        </form>
+    </header>
+
+    <main class="mt-12 max-w-3xl mx-auto">
+        <div id="status" class="text-center text-gray-600 font-medium"></div>
+        <div id="audioResult" class="hidden bg-white p-6 mt-6 rounded-2xl shadow-lg border border-gray-200">
+            {% if result %}
+                <h3 class="font-semibold">Kết quả</h3>
+                <p>Tiêu đề: {{ result.title }}</p>
+                <a class="text-blue-600 hover:underline" href="{{ result.filepath }}">Tải về file MP3</a>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="/static/js/extract-audio.js" defer></script>
+{% endblock %}

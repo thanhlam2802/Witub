@@ -1,0 +1,63 @@
+version: "3.8"
+
+# 1. Định nghĩa một "kho chung" cho toàn bộ dự án
+volumes:
+  shared-downloads:
+
+networks:
+  custom_network:
+    driver: bridge
+
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: fastapi_redis
+    networks:
+      - custom_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  web:
+    build: .
+    container_name: fastapi_web
+    command: sh -c "uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload"
+    volumes:
+      - .:/code
+      # 2. Gắn "kho chung" vào thư mục /downloads bên trong web
+      - shared-downloads:/downloads
+    ports:
+      - "8000:8000"
+    networks:
+      - custom_network
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - SESSION_SECRET_KEY=${SESSION_SECRET_KEY}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  worker:
+    build: .
+    container_name: fastapi_worker
+    command: sh -c "rq worker --url $${REDIS_URL} default"
+    volumes:
+      - .:/code
+      - ./cookies.txt:/code/cookies.txt
+      # 3. Gắn "kho chung" vào cùng thư mục /downloads bên trong worker
+      - shared-downloads:/downloads
+    networks:
+      - custom_network
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
+      - DEEPL_API_KEY=${DEEPL_API_KEY}
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    depends_on:
+      redis:
+        condition: service_healthy
